@@ -44,6 +44,10 @@ typedef struct user{
 
 typedef struct twitter{
     // to be completed
+    int num_users;
+    struct user users[MAX_USERS];
+    struct tweet newsfeed[MAX_TWEETS];
+
 } twitter;
 
 void create_twitter_system(twitter * twitter_system);
