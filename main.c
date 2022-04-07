@@ -16,7 +16,6 @@ int main() {
     for(int i = 0; i < twitter_system.num_users; i++){
 
         printf("Username%d: %s \t\t following:%d\t follwers:%d\n",i ,twitter_system.users[i].username, twitter_system.users[i].num_following,twitter_system.users[i].num_followers);
-        printf("YOUR MOM");
     }
 
 
