@@ -12,11 +12,11 @@
 void create_twitter_system(twitter * twitter_system){
 
     //creates users first
-    int control = 1, i;
-    for(i = 0;i < MAX_USERS;){
+    int i;
+    for(i = 0;i < MAX_USERS;i++){
         printf("\nEnter username of the next user or press 'tab key' to exit:\n");
-        //scanf("%s", &witter_system->users[i].username);
-        fflush(stdin);
+        //scanf("%s", &twitter_system->users[i].username);
+        //fflush(stdin);
         fgets(twitter_system->users[i].username, USR_LENGHT, stdin);
         if(twitter_system->users[i].username[strlen(twitter_system->users[i].username) -1] == '\n') {
             twitter_system->users[i].username[strlen(twitter_system->users[i].username) - 1] = '\0';
@@ -28,10 +28,14 @@ void create_twitter_system(twitter * twitter_system){
         twitter_system->users[i].num_followers = 0;
         twitter_system->num_users++;
 
-        i += menu(&twitter_system->users[i]);
-
 
     }
     // create another loop for when i variable reaches max and needs to restart.
+    // needs to reiterate through the users and give each user the various options
+
+    /*for(i = 0; i < twitter_system->num_users; i++){
+
+
+    }*/
 
 }
