@@ -13,10 +13,10 @@ int main() {
     //implement here the code to print the users
     // for each user you need to print the username, the number of followers and the number of users that the current user is following
 
-    for(int i = 0; i < twitter_system.num_users; i++){
+    /*for(int i = 0; i < twitter_system.num_users; i++){
+        printf("User%d: %s            \tfollowing:%d\t follwers:%d\n",i ,twitter_system.users[i].username, twitter_system.users[i].num_following,twitter_system.users[i].num_followers);
+    }*/
 
-        printf("Username%d: %s \t\t following:%d\t follwers:%d\n",i ,twitter_system.users[i].username, twitter_system.users[i].num_following,twitter_system.users[i].num_followers);
-    }
 
 
 }
