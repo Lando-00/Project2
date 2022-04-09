@@ -7,7 +7,7 @@
 
 
 int menu(user *sptr){
-    printf("\n\n");
+    //printf("\n\n");
     int choice = -1;
     puts("Choose an action: (by entering the corresponding number)");
     printf("Post tweet: 1\n");
@@ -21,8 +21,20 @@ int menu(user *sptr){
         printf("Enter choice:\n");
         scanf("%d", &choice);
         switch (choice) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
             case 6:
                 return 1;
+            case 7:
+                return 0;
         }
     }
 }
