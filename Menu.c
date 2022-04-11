@@ -15,24 +15,24 @@ int menu(user *sptr){
     printf("follow others: 3\n");
     printf("unfollow users: 4\n");
     printf("Delete your account: 5\n");
-    printf("End currrent user's turn: 6\n");
+    printf("End current user's turn: 6\n");
     printf("End twitter system: 7\n");
     while(choice != 0){
         printf("Enter choice:\n");
         scanf("%d", &choice);
         switch (choice) {
             case 1:
-                break;
+                return 1;
             case 2:
-                break;
+                return 2;
             case 3:
-                break;
+                return 3;
             case 4:
                 break;
             case 5:
                 break;
             case 6:
-                return 1;
+                return 6;
             case 7:
                 return 0;
         }
