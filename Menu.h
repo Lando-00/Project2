@@ -9,4 +9,4 @@
 
 
 
-int menu(user *sptr);
+int menu(twitter *ts, user *sptr);

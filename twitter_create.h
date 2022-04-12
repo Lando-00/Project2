@@ -1,5 +1,5 @@
 //
-// Created by priya on 31/03/2022.
+// Created by lovan on 31/03/2022.
 //
 
 #ifndef PROJECT2_TWITTER_CREATE_H
@@ -35,10 +35,10 @@ typedef struct tweet{
 typedef struct user{
     char username[USR_LENGHT];
 
-    char followers[MAX_FOLLOWERS];
+    char followers[MAX_FOLLOWERS][USR_LENGHT];
     int num_followers;
 
-    char following[MAX_FOLLOWING];
+    char following[MAX_FOLLOWING][USR_LENGHT];
     int num_following;
 }user;
 
@@ -46,10 +46,8 @@ typedef struct twitter{
     // to be completed
     int num_users;
     struct user users[MAX_USERS];
-    struct tweet allTweets[MAX_TWEETS];
+    struct tweet newsfeed[MAX_TWEETS];
 
 } twitter;
 
-
-void create_twitter_system(twitter * twitter_system);
-void postTweet(char user_nm[USR_LENGHT]);
+void create_twitter_system(twitter * ts);
