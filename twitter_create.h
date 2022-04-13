@@ -40,14 +40,18 @@ typedef struct user{
 
     char following[MAX_FOLLOWING][USR_LENGHT];
     int num_following;
+
+    struct user *nextptr;
 }user;
+
+typedef user *Userptr;
+
 
 typedef struct twitter{
     // to be completed
     int num_users;
-    struct user users[MAX_USERS];
+    Userptr headptr;
     struct tweet newsfeed[MAX_TWEETS];
-
 } twitter;
 
 void create_twitter_system(twitter * ts);

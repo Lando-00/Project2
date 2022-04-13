@@ -2,53 +2,56 @@
 // Created by lovan on 31/03/2022.
 //
 
-#include "twitter_create.h"
-#include "Menu.h"
-#include "Functions.h"
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#ifndef PROJECT2_TWITTER_CREATE_H
+#define PROJECT2_TWITTER_CREATE_H
+
+#endif //PROJECT2_TWITTER_CREATE_H
+
+//Max length of a tweet
+#define TWEET_LENGTH 270
+
+//Max length of a username
+#define USR_LENGHT 100
+
+//Max num of a followers
+#define MAX_FOLLOWERS 30
+
+//Max num of following users
+#define MAX_FOLLOWING 30
+
+//Max num of tweets in the news feed
+#define MAX_TWEETS 100
+
+//Max num of users
+#define MAX_USERS 100
+
+typedef struct tweet{
+    int id;
+    char msg[TWEET_LENGTH];
+    char user[USR_LENGHT];
+
+}tweet;
+
+typedef struct user{
+    char username[USR_LENGHT];
+
+    char followers[MAX_FOLLOWERS][USR_LENGHT];
+    int num_followers;
+
+    char following[MAX_FOLLOWING][USR_LENGHT];
+    int num_following;
+
+    struct user *nextptr;
+}user;
+
+typedef user *Userptr;
 
 
-void create_twitter_system(twitter * ts){
+typedef struct twitter{
+    // to be completed
+    int num_users;
+    Userptr headptr;
+    struct tweet newsfeed[MAX_TWEETS];
+} twitter;
 
-    //creates users first
-    for(int i = 0;i < MAX_USERS;i++){
-        printf("\nEnter username of the next user or press 'tab key' then 'Enter' to exit:\n");
-        //scanf("%s", &twitter_system->users[i].username); // scanf does not account for 'spaces' therefore use fgets
-        //fflush(stdin);
-        fgets(ts->users[i].username, USR_LENGHT, stdin);
-        if(ts->users[i].username[strlen(ts->users[i].username) - 1] == '\n') { //getting rid of the new line char
-            ts->users[i].username[strlen(ts->users[i].username) - 1] = '\0'; //putting a null char instead
-        }
-        if(ts->users[i].username[i] == ' ') { //does not allow for empty usernames
-            printf("(Do not start username with a 'Space'!!!)");
-            i--;
-            continue;
-        }
-        if(ts->users[i].username[strlen(ts->users[i].username) - 1] == '\t') {
-            break;
-        }
-        ts->users[i].num_following = 0;
-        ts->users[i].num_followers = 0;
-        ts->num_users++;
-
-    }
-    // prints out all of the users
-    for(int i = 0; i < ts->num_users; i++){
-        printf("User%d: %s      \t\tfollowing:%d\t follwers:%d\n", i , ts->users[i].username, ts->users[i].num_following, ts->users[i].num_followers);
-    }
-
-    // create another loop for when i variable reaches max.
-    // needs to reiterate through the users and give each user the various options...
-    int control;
-    for(int j = 0; j < ts->num_users; j++){
-        printf("\n\nCurrent user%d: %s\n", j , ts->users[j].username);
-        control = menu(ts, &ts->users[j]);
-        if(control == 7){
-            break;
-        }
-
-    }
-
-}
+void create_twitter_system(twitter * ts);

@@ -10,3 +10,5 @@
 
 
 void follow(twitter *ts, user *ptr);
+
+void printusers();
