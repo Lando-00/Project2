@@ -13,13 +13,13 @@ int menu(twitter *ts, user *sptr){
     //printf("\n\n");
     int choice = -1;
     puts("Choose an action: (by entering the corresponding number)");
-    printf("Post tweet: 1\n");
-    printf("get News Feed: 2\n");
-    printf("follow others: 3\n");
-    printf("unfollow users: 4\n");
-    printf("Delete your account: 5\n");
-    printf("End currrent user's turn: 6\n");
-    printf("End twitter system: 7\n");
+    printf("Post tweet: \t\t 1\n");
+    printf("get News Feed:\t\t 2\n");
+    printf("follow others:\t\t 3\n");
+    printf("unfollow users:\t\t 4\n");
+    printf("Delete your account:\t 5\n");
+    printf("End currrent user's turn:6\n");
+    printf("End twitter system:\t 7\n");
     while(choice != 0){
         printf("Enter (next) choice:\n");
         scanf("%d", &choice);
@@ -30,11 +30,12 @@ int menu(twitter *ts, user *sptr){
                 return 2;
             case 3:
                 follow(ts, sptr);
-                break;
+                return 3;
             case 4:
                 return 4;
             case 5:
-                return 5;
+                delete_user(ts, sptr);
+                return 6;
             case 6:
                 return 6;
             case 7:

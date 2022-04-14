@@ -60,3 +60,15 @@ void follow(twitter *ts, user *ptr){ //takes in the whole twitter struct, and th
     }*/
 
 }
+
+void delete_user(twitter *ts, user *curruser){
+
+    Userptr tmp;
+    tmp = ts->headptr;
+
+    while(strcasecmp(tmp->nextptr->username, curruser->username) != 0){
+        tmp = tmp->nextptr;
+    }
+    tmp->nextptr = curruser->nextptr;
+    free(curruser);
+}

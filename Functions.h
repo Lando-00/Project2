@@ -11,4 +11,4 @@
 
 void follow(twitter *ts, user *ptr);
 
-void printusers();
+void delete_user(twitter *ts, user *curruser);
