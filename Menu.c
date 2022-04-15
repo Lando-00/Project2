@@ -32,6 +32,7 @@ int menu(twitter *ts, user *sptr){
                 follow(ts, sptr);
                 return 3;
             case 4:
+                unfollow(ts, sptr);
                 return 4;
             case 5:
                 delete_user(ts, sptr);

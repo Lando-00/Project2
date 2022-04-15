@@ -13,7 +13,7 @@ int main() {
     // prints out all of the users // linked list style
     Userptr currptr = ts.headptr;
     while(currptr != NULL){
-        printf("User: %s  \t\tfollowing: %d\tfollowers: %d\n", currptr->username, currptr->num_followers, currptr->num_followers);
+        printf("User: %s\t\tfollowing: %d\tfollowers: %d\n", currptr->username, currptr->num_following, currptr->num_followers);
         currptr = currptr->nextptr;
     }
     // prints out all of the users

@@ -25,6 +25,7 @@ void follow(twitter *ts, user *ptr){ //takes in the whole twitter struct, and th
 
         if(strcasecmp(currptr->username,mUser) == 0){
             // current user follows user b
+
             strcpy(ptr->following[ptr->num_following], currptr->username );
             ptr->num_following++; // increases following count
             // person b has a follower
@@ -61,7 +62,7 @@ void follow(twitter *ts, user *ptr){ //takes in the whole twitter struct, and th
 
 }
 
-void delete_user(twitter *ts, user *curruser){
+void delete_user(twitter *ts, user *curruser){//deltes current user
 
     Userptr tmp;
     tmp = ts->headptr;
@@ -71,4 +72,47 @@ void delete_user(twitter *ts, user *curruser){
     }
     tmp->nextptr = curruser->nextptr;
     free(curruser);
+}
+
+void unfollow(twitter *ts, user *ptr){//unfollows another user
+    char name[USR_LENGHT];
+    char null[USR_LENGHT];
+    Userptr currptr;
+    currptr = ts->headptr;
+    for(int j = 0; j < USR_LENGHT; j++){
+        null[j] = '\0';
+    }
+    printf("\nEnter username of the user you would like to unfollow:\n");
+    fflush(stdin);
+    fgets(name,USR_LENGHT,stdin);
+    if(name[strlen(name) - 1] == '\n') { //getting rid of the new line char
+        name[strlen(name) - 1] = '\0'; //putting a null char instead
+    }
+    int i, check = 0;
+    for(i = 0; ptr->num_following; i++){
+        if(strcmp(ptr->following[i], name) == 0){
+            strcpy(ptr->following[i], null);
+            ptr->num_following--;
+            check = 1;
+            break;
+        }
+    }
+    if(check == 0){
+        printf("Error, entered user not found.\n");
+        return;
+    }
+    while(currptr->nextptr != NULL){
+        if(strcasecmp(currptr->username, name) == 0){
+            break;
+        }
+        currptr = currptr->nextptr;
+    }
+    for(int k = 0; k < currptr->num_followers; k++){
+        if(strcmp(currptr->followers[i], ptr->username) == 0){
+            strcpy(currptr->followers[i], null);
+            currptr->num_followers--;
+            break;
+        }
+    }
+
 }
