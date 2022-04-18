@@ -14,13 +14,8 @@ int main() {
     Userptr currptr = ts.headptr;
     while(currptr != NULL){
         printf("User: %s\t\tfollowing: %d\tfollowers: %d\n", currptr->username, currptr->num_following, currptr->num_followers);
-        currptr = currptr->nextptr;
+        currptr = currptr->nextptr; //currptr holds the address of the next node
     }
-    // prints out all of the users
-    /*for(int i = 0; i < ts.num_users; i++){
-        printf("User%d: %s      \t\tfollowing:%d\t follwers:%d\n", i , ts.users[i].username, ts.users[i].num_following, ts.users[i].num_followers);
-    }*/
-
     return 0;
 
 }

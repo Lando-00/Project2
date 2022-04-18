@@ -15,11 +15,12 @@ void create_twitter_system(twitter * ts){
     //creates users first
     // using linked lists
 
-    Userptr currptr;
+    Userptr currptr; //declaring a current pointer which is associated to the struct user
+    Userptr headptr = 0; //initially the list is empty so head points to nothing
     for(int i = 0;i < MAX_USERS;i++){
-
-        Userptr newptr = malloc(sizeof(user));
-        if(newptr != NULL){ //space is available
+        //newptr is the pointer which holds the address and points to the next empty node
+        Userptr newptr = malloc(sizeof(user)); //allocating memory - malloc is going to return the staring address of that memory block
+        if(newptr != NULL){ //space is available, i.e while newptr does not point to the end
             printf("\nEnter username of the next user or press 'tab key' then 'Enter' to exit:\n");
             fgets(newptr->username, USR_LENGHT, stdin);
             if(newptr->username[0] == ' ') { //does not allow for empty usernames
@@ -35,65 +36,40 @@ void create_twitter_system(twitter * ts){
             }
             newptr->num_followers = 0;
             newptr->num_following = 0;
-            newptr->nextptr = NULL;
+            newptr->nextptr = NULL; //newptr points to the nextptr which points to nothing
         }
-        if(ts->headptr == NULL){
-            ts->headptr = newptr;
+        if(ts->headptr == NULL)
+        {
+            ts->headptr = newptr; //newptr is now thw headptr and points to the first node in the list
         }
         else{
-            currptr = ts->headptr;
-            while(currptr->nextptr != NULL){
-                currptr = currptr->nextptr;
+            currptr = ts->headptr; //currptr is like a temporary pointer which changes what it points to everytime, unlike headptr which only points to the first node
+            while(currptr->nextptr != NULL){ //while cuuptr doesn't reach the end of the list
+                currptr = currptr->nextptr; //currptr holds the address of the next node
             }
-            currptr->nextptr = newptr;
+            currptr->nextptr = newptr; //currptr holds the address of the next node which is now the newptr
         }
-
-
-
-        /*printf("\nEnter username of the next user or press 'tab key' then 'Enter' to exit:\n");
-        //scanf("%s", &twitter_system->users[i].username); // scanf does not account for 'spaces' therefore use fgets
-        //fflush(stdin);
-        fgets(ts->users[i].username, USR_LENGHT, stdin);
-        if(ts->users[i].username[strlen(ts->users[i].username) - 1] == '\n') { //getting rid of the new line char
-            ts->users[i].username[strlen(ts->users[i].username) - 1] = '\0'; //putting a null char instead
-        }
-        if(ts->users[i].username[i] == ' ') { //does not allow for empty usernames
-            printf("(Do not start username with a 'Space'!!!)");
-            i--;
-            continue;
-        }
-        if(ts->users[i].username[strlen(ts->users[i].username) - 1] == '\t') {
-            break;
-        }
-        ts->users[i].num_following = 0;
-        ts->users[i].num_followers = 0;
-        ts->num_users++;*/
-
     }
     // prints out all of the users
-    currptr = ts->headptr;
-    while(currptr != NULL){
+    currptr = ts->headptr; //starting at the beginning of the list
+    while(currptr != NULL){ //while the end of the list is not reached
         printf("User: %s  \t\tfollowing: %d\tfollowers: %d\n", currptr->username, currptr->num_followers, currptr->num_followers);
-        currptr = currptr->nextptr;
+        currptr = currptr->nextptr; //incrementing each time to read the next node
     }
-    /*for(int i = 0; i < ts->num_users; i++){
-        printf("User%d: %s      \t\tfollowing:%d\t follwers:%d\n", i , ts->users[i].username, ts->users[i].num_following, ts->users[i].num_followers);
-    }*/
-
 
     // create another loop for when i variable reaches max.
-    // needs to reiterate through the users and give each user the various options...
-    currptr = ts->headptr;
+    // needs to re-iterate through the users and give each user the various options...
+    currptr = ts->headptr; //staring at the beginning of the list
     int control;
-    while(currptr != NULL){
+    while(currptr != NULL){ //while the end of the list is not reached
         printf("\n\nCurrent User: %s\n", currptr->username);
         control = menu(ts, currptr);
         if(control == 6){
-            currptr = currptr->nextptr;
+            currptr = currptr->nextptr; //go to the next user
             continue;
         }
         else if(control == 7){
-            break;
+            break; //exit out of the program
         }
     }
 

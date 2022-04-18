@@ -41,17 +41,16 @@ typedef struct user{
     char following[MAX_FOLLOWING][USR_LENGHT];
     int num_following;
 
-    struct user *nextptr;
+    struct user *nextptr; //will hold the address if the next node
 }user;
 
-typedef user *Userptr;
+typedef user *Userptr; //a pointer to the struct user
 
 
 typedef struct twitter{
-    // to be completed
     int num_users;
-    Userptr headptr;
+    Userptr headptr; //points to the first node in the list
     struct tweet newsfeed[MAX_TWEETS];
 } twitter;
 
-void create_twitter_system(twitter * ts);
+void create_twitter_system(twitter * ts); //function prototype
