@@ -29,13 +29,13 @@ int menu(twitter *ts, user *sptr){
             case 2:
                 return 2;
             case 3:
-                follow(ts, sptr);
+                follow(ts, sptr); //calling the function to follow users
                 return 3;
             case 4:
-                unfollow(ts, sptr);
+                unfollow(ts, sptr); //calling the function to unfollow users
                 return 4;
             case 5:
-                delete_user(ts, sptr);
+                delete_user(ts, sptr);//calling the function to delete users
                 return 6;
             case 6:
                 return 6;
