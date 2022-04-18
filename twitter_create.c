@@ -75,14 +75,4 @@ void create_twitter_system(twitter * ts){
 
 
 
-    /*int control;
-    for(int j = 0; j < ts->num_users; j++){
-        printf("\n\nCurrent user%d: %s\n", j , ts->users[j].username);
-        control = menu(ts, &ts->users[j]);
-        if(control == 7){
-            break;
-        }
-
-    }*/
-
 }

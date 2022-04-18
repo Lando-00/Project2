@@ -29,8 +29,9 @@ typedef struct tweet{
     int id;
     char msg[TWEET_LENGTH];
     char user[USR_LENGHT];
-
+    struct tweet *nexttweet;
 }tweet;
+typedef tweet *Tweetptr;
 
 typedef struct user{
     char username[USR_LENGHT];
