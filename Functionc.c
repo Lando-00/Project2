@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+//#include "tweets.h"
 void follow(twitter *ts, user *ptr){ //takes in the whole twitter struct, and the current user
 
     char mUser[USR_LENGHT]; //the user who is going to get followed by the current user

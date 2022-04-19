@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+//#include "tweets.h"
 
 
 void create_twitter_system(twitter * ts){
@@ -72,7 +73,5 @@ void create_twitter_system(twitter * ts){
             break; //exit out of the program
         }
     }
-
-
 
 }

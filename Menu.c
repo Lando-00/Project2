@@ -7,6 +7,7 @@
 #include "Functions.h"
 #include "Menu.h"
 #include <stdio.h>
+//#include "tweets.h"
 
 
 int menu(twitter *ts, user *sptr){
