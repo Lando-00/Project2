@@ -17,7 +17,7 @@ void create_twitter_system(twitter * ts){
     // using linked lists
 
     Userptr currptr; //declaring a current pointer which is associated to the struct user
-    Userptr headptr = 0; //initially the list is empty so head points to nothing
+    ts->headptr = 0; //initially the list is empty so head points to nothing
     for(int i = 0;i < MAX_USERS;i++){
         //newptr is the pointer which holds the address and points to the next empty node
         Userptr newptr = malloc(sizeof(user)); //allocating memory - malloc is going to return the staring address of that memory block
@@ -48,7 +48,7 @@ void create_twitter_system(twitter * ts){
             while(currptr->nextptr != NULL){ //while cuuptr doesn't reach the end of the list
                 currptr = currptr->nextptr; //currptr holds the address of the next node
             }
-            currptr->nextptr = newptr; //currptr holds the address of the next node which is now the newptr
+            currptr->nextptr = newptr; //currptr (last node) holds the address of the next node which is now the newptr
         }
     }
     // prints out all of the users

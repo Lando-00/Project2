@@ -29,8 +29,9 @@ typedef struct tweet{
     int id;
     char msg[TWEET_LENGTH];
     char user[USR_LENGHT];
-    struct tweet *nexttweet;
+    struct tweet *nextweet;
 }tweet;
+
 typedef tweet *Tweetptr;
 
 typedef struct user{
@@ -42,16 +43,17 @@ typedef struct user{
     char following[MAX_FOLLOWING][USR_LENGHT];
     int num_following;
 
-    struct user *nextptr; //will hold the address if the next node
+    struct user *nextptr;
 }user;
 
-typedef user *Userptr; //a pointer to the struct user
+typedef user *Userptr;
 
 
 typedef struct twitter{
+    // to be completed
     int num_users;
-    Userptr headptr; //points to the first node in the list
-    struct tweet newsfeed[MAX_TWEETS];
+    Userptr headptr;
+    Tweetptr newsfeed;
 } twitter;
 
-void create_twitter_system(twitter * ts); //function prototype
+void create_twitter_system(twitter * ts);
