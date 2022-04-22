@@ -7,7 +7,7 @@
 #include "Functions.h"
 #include "Menu.h"
 #include <stdio.h>
-//#include "tweets.h"
+#include "tweets.h"
 
 
 int menu(twitter *ts, user *sptr){
@@ -26,6 +26,7 @@ int menu(twitter *ts, user *sptr){
         scanf("%d", &choice);
         switch (choice) {
             case 1:
+                posttweet(ts,sptr);
                 return 1;
             case 2:
                 return 2;

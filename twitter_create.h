@@ -5,7 +5,7 @@
 #ifndef PROJECT2_TWITTER_CREATE_H
 #define PROJECT2_TWITTER_CREATE_H
 
-#endif //PROJECT2_TWITTER_CREATE_H
+//#endif //PROJECT2_TWITTER_CREATE_H
 
 //Max length of a tweet
 #define TWEET_LENGTH 270
@@ -29,7 +29,7 @@ typedef struct tweet{
     int id;
     char msg[TWEET_LENGTH];
     char user[USR_LENGHT];
-    struct tweet *nextweet;
+    struct tweet *nextpointer;
 }tweet;
 
 typedef tweet *Tweetptr;
@@ -53,7 +53,8 @@ typedef struct twitter{
     // to be completed
     int num_users;
     Userptr headptr;
-    Tweetptr newsfeed;
+    Tweetptr headpointer;
 } twitter;
 
 void create_twitter_system(twitter * ts);
+#endif //PROJECT2_TWITTER_CREATE_H
