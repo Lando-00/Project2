@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "tweets.h"
+//#include "tweets.h"
 
 
 void create_twitter_system(twitter * ts){
@@ -24,6 +24,7 @@ void create_twitter_system(twitter * ts){
         if(newptr != NULL){ //space is available, i.e while newptr does not point to the end
             printf("\nEnter username of the next user or press 'tab key' then 'Enter' to exit:\n");
             fgets(newptr->username, USR_LENGHT, stdin);
+            fflush(stdin);
             if(newptr->username[0] == ' ') { //does not allow for empty usernames
                 printf("(Do not start username with a 'Space'!!!)");
                 i--;

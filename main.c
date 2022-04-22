@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include "twitter_create.h"
 
 
@@ -13,9 +13,14 @@ int main() {
     // prints out all of the users // linked list style
     Userptr currptr = ts.headptr;
     printf("Last Active Users on the System:\n");
-    printf("%s%20s%13s", "User:", "Following:", "Followers:\n");
+    puts("--------------------------------------------------------------------------");
+    if(ts.headptr == NULL){
+        puts("No User Left on system. Sad Times!");
+        puts("Anyhoo. Bye Human! Come again!");
+        exit(EXIT_SUCCESS);
+    }
     while(currptr != NULL){
-        printf("%s\t\t  %d\t    %d\n", currptr->username, currptr->num_following, currptr->num_followers);
+        printf("User:%s\t\t  Following:%d\t    Followers:%d\n", currptr->username, currptr->num_following, currptr->num_followers);
         currptr = currptr->nextptr;
     }
     return 0;

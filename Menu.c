@@ -6,12 +6,11 @@
 #include "twitter_create.h"
 #include "Functions.h"
 #include "Menu.h"
-#include <stdio.h>
 #include "tweets.h"
+#include <stdio.h>
 
 
 int menu(twitter *ts, user *sptr){
-    //printf("\n\n");
     int choice = -1;
     puts("Choose an action: (by entering the corresponding number)");
     printf("Post tweet: \t\t 1\n");
@@ -24,6 +23,7 @@ int menu(twitter *ts, user *sptr){
     while(choice != 0){
         printf("Enter (next) choice:\n");
         scanf("%d", &choice);
+        fflush(stdin);
         switch (choice) {
             case 1:
                 posttweet(ts,sptr);
@@ -31,18 +31,25 @@ int menu(twitter *ts, user *sptr){
             case 2:
                 return 2;
             case 3:
-                follow(ts, sptr); //calling the function to follow users
+                follow(ts, sptr);
                 return 3;
             case 4:
-                unfollow(ts, sptr); //calling the function to unfollow users
+                unfollow(ts, sptr);
                 return 4;
             case 5:
-                delete_user(ts, sptr);//calling the function to delete users
+                delete_user(ts, sptr);
                 return 6;
             case 6:
                 return 6;
             case 7:
                 return 7;
+            default:
+                printf("Error! Not an option!\n");
+                continue;
         }
     }
+    // for fun
+    printf("Heyo, It's an Easter Egg. You found it! Well Done!\n");
+    printf("Program will Self-Destruct now! Bye User:%s\n", sptr->username);
+    return 7;
 }

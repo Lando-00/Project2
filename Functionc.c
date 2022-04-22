@@ -63,7 +63,14 @@ void delete_user(twitter *ts, user *curruser){
     Userptr tmp;
     tmp = ts->headptr;
 
-    while(strcasecmp(tmp->nextptr->username, curruser->username) != 0){//finds pointer to the current user
+    if(curruser == ts->headptr){
+        ts->headptr = curruser->nextptr;
+        free(curruser);//removes the space previously taken up by that user struct
+        return;
+    }
+
+
+    while(strcasecmp(tmp->nextptr->username, curruser->username) != 0){//finds pointer to the user before current user
         tmp = tmp->nextptr;
     }
     tmp->nextptr = curruser->nextptr;// previous user is pointing to the user after current one // current user has now been removed from linked list
