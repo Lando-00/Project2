@@ -18,26 +18,27 @@ int menu(twitter *ts, user *sptr){
     printf("follow others:\t\t 3\n");
     printf("unfollow users:\t\t 4\n");
     printf("Delete your account:\t 5\n");
-    printf("End currrent user's turn:6\n");
+    printf("End current user's turn: 6\n");
     printf("End twitter system:\t 7\n");
+    //calling functions according to user choice
     while(choice != 0){
         printf("Enter (next) choice:\n");
         scanf("%d", &choice);
         fflush(stdin);
         switch (choice) {
             case 1:
-                posttweet(ts,sptr);
+                posttweet(ts,sptr); //calling function that allows user to post tweets
                 return 1;
-            case 2:
+            case 2: //getnewsfeed
                 return 2;
             case 3:
-                follow(ts, sptr);
+                follow(ts, sptr); //calling function that allows users to follow other users
                 return 3;
             case 4:
-                unfollow(ts, sptr);
+                unfollow(ts, sptr); //calling function that allows users to unfollow other users
                 return 4;
             case 5:
-                delete_user(ts, sptr);
+                delete_user(ts, sptr); //calling function that allows users to delete their account
                 return 6;
             case 6:
                 return 6;
@@ -49,7 +50,6 @@ int menu(twitter *ts, user *sptr){
         }
     }
     // for fun
-    printf("Heyo, It's an Easter Egg. You found it! Well Done!\n");
     printf("Program will Self-Destruct now! Bye User:%s\n", sptr->username);
     return 7;
 }

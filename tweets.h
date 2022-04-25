@@ -9,5 +9,5 @@
 
 #endif //PROJECT2_TWEETS_H
 
-
+//function prototype for function that allows user to post tweets
 void posttweet(twitter *ts, user *ptr);
