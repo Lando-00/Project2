@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void follow(twitter *ts, user *ptr) //function definition to delete a user
+void follow(twitter *ts, user *ptr) //function definition to follow a user
 { //takes in the whole twitter struct, and the current user
 
     char mUser[USR_LENGHT];//the user who is going to get followed by the current user

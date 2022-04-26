@@ -20,6 +20,7 @@ void posttweet(twitter *ts, user* ptr) //function definition for function that a
     if(currptr->msg[strlen(currptr->msg) - 1] == '\n') { //getting rid of the new line char
         currptr->msg[strlen(currptr->msg) - 1] = '\0'; //putting a null char instead
     }
+    strcpy(currptr->user,ptr->username);
     if(ts->tweetheadptr == NULL) //if the head pointer points to NULL
     {
         // ts->newsfeed, is the head pointer for tweets in the twitter system!
@@ -31,15 +32,26 @@ void posttweet(twitter *ts, user* ptr) //function definition for function that a
         currptr->nextpointer=ts->tweetheadptr;//make the current pointer which points to the next pointer be the head pointer (first node in the list)
         ts->tweetheadptr= currptr;
     }
-
-
-    //for printing the tweet
-    //we have to loop through each list to find the node we want to pront out
-    /*Tweetptr currentptr;
-      currentptr=headpointer; //starting at the beginning
-      while(currentptr!=NULL)//while currentptr doesn't reach the end, keep printing the tweets
-      {
-          printf("%s\n", currentptr->msg);
-          currentptr=currentptr->nextweet;
-      }*/
+}
+void getNewsFeed(twitter *ts, user *currUser)
+{
+    Tweetptr currptr; //temp ptr
+    int tweet_check = 0;
+    currptr = ts->tweetheadptr;
+    while(currptr != NULL)//going through the tweets
+    {
+        for(int i=0;i<currUser->num_following;i++) //going through the following list & comparing to tweeter
+        {
+            if (strcasecmp(currptr->user, currUser->following[i])==0 || strcasecmp(currptr->user, currUser->username)==0)
+            {
+                tweet_check++;
+                printf("%s\n", currptr->msg);
+            }
+        }
+        if(tweet_check==10)
+        {
+            break;
+        }
+        currptr = currptr->nextpointer;
+    }
 }

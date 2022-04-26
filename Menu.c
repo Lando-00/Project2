@@ -30,6 +30,7 @@ int menu(twitter *ts, user *sptr){
                 posttweet(ts,sptr); //calling function that allows user to post tweets
                 return 1;
             case 2: //getnewsfeed
+                getNewsFeed(ts, sptr);
                 return 2;
             case 3:
                 follow(ts, sptr); //calling function that allows users to follow other users

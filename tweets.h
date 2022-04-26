@@ -11,3 +11,5 @@
 
 //function prototype for function that allows user to post tweets
 void posttweet(twitter *ts, user *ptr);
+
+void getNewsFeed(twitter *ts, user *currUser);

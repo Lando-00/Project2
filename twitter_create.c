@@ -4,12 +4,9 @@
 
 #include "twitter_create.h"
 #include "Menu.h"
-#include "Functions.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include "tweets.h"
-
 
 void create_twitter_system(twitter * ts){
 
@@ -17,7 +14,8 @@ void create_twitter_system(twitter * ts){
     // using linked lists
 
     Userptr currptr; //declaring a current pointer which is associated to the struct user
-    ts->headptr = 0; //initially the list is empty so head points to nothing
+    ts->headptr = NULL; //initially the list is empty so head points to nothing
+    ts->tweetheadptr = NULL; //initially the list of tweets is empty so head points to nothing
     for(int i = 0;i < MAX_USERS;i++){
         //newptr is the pointer which holds the address and points to the next empty node
         Userptr newptr = malloc(sizeof(user)); //allocating memory - malloc is going to return the staring address of that memory block
@@ -63,16 +61,23 @@ void create_twitter_system(twitter * ts){
     // needs to re-iterate through the users and give each user the various options...
     currptr = ts->headptr; //staring at the beginning of the list
     int control;
-    while(currptr != NULL){ //while the end of the list is not reached
+    while(1){ //while the end of the list is not reached
         printf("\n\nCurrent User: %s\n", currptr->username);
         control = menu(ts, currptr);
         if(control == 6){
-            currptr = currptr->nextptr; //go to the next user
+            if(currptr->nextptr == NULL)
+            {
+                currptr = ts->headptr;
+            }
+            else {
+                currptr = currptr->nextptr; //go to the next user
+            }
             continue;
         }
         else if(control == 7){
             break; //exit out of the program
         }
+
     }
 
 }
