@@ -25,7 +25,7 @@ void follow(twitter *ts, user *ptr) //function definition to follow a user
     // runs check to see if you already follow the entered user
     for(int d = 0; d < MAX_FOLLOWING; d++){
         if(strcasecmp(mUser,ptr->username)==0){
-            printf("You are not allowed to follow yourself!\n Try entering a different user.\n");
+            printf("You are not allowed to follow yourself!\n Try entering a different user.\nNot very clever are you?\nanyhoo...");
             return;
         }
         if(strcasecmp(mUser,ptr->following[d])==0){
@@ -117,6 +117,25 @@ void sub_delete(twitter *ts, user *curruser)
             k++;
         }
         tmpptr->num_followers--;
+    }
+    //finally need to delete any tweets by the user b4 delting the account
+    Tweetptr currtweet = ts->tweetheadptr;
+    Tweetptr prevtweet = ts->tweetheadptr->nextpointer;
+    while(currtweet != NULL){
+        if(strcasecmp(curruser->username,currtweet->user) == 0){
+            if(currtweet == ts->tweetheadptr){
+                ts->tweetheadptr = currtweet->nextpointer;
+                free(currtweet);
+                currtweet = ts->tweetheadptr->nextpointer;
+                continue;
+            }
+            prevtweet->nextpointer = currtweet->nextpointer;
+            free(currtweet);
+            currtweet = prevtweet->nextpointer;
+            continue;
+        }
+        prevtweet = currtweet;
+        currtweet = currtweet->nextpointer;
     }
 }
 

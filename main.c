@@ -15,7 +15,9 @@ int main() {
     puts("--------------------------------------------------------------------------");
     if(ts.headptr == NULL)
     {
-        exit(EXIT_SUCCESS);
+      puts("No User Left on system. Sad Times!");
+      puts("Anyhoo. Bye Human! Come again!");
+      exit(EXIT_SUCCESS);
     }
     // prints out all the users // linked list style
     while(currptr != NULL){

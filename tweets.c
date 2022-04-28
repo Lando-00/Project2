@@ -40,10 +40,20 @@ void getNewsFeed(twitter *ts, user *currUser)
     currptr = ts->tweetheadptr;
     while(currptr != NULL)//going through the tweets
     {
-        for(int i=0;i<currUser->num_following;i++) //going through the following list & comparing to tweeter
+        if(currUser->num_following > 0) // for edge cases
         {
-            if (strcasecmp(currptr->user, currUser->following[i])==0 || strcasecmp(currptr->user, currUser->username)==0)
+            for (int i = 0; i < currUser->num_following; i++) //going through the following list & comparing to tweeter
             {
+                if (strcasecmp(currptr->user, currUser->following[i]) == 0 ||
+                    strcasecmp(currptr->user, currUser->username) == 0) {
+                    tweet_check++;
+                    printf("%s\n", currptr->msg);
+                }
+            }
+        }
+        else // incase user follows nooone
+        {
+            if(strcasecmp(currptr->user, currUser->username) == 0){
                 tweet_check++;
                 printf("%s\n", currptr->msg);
             }

@@ -10,7 +10,7 @@
 #include <stdio.h>
 
 
-int menu(twitter *ts, user *sptr){
+int menu(twitter *ts, user *CurrentUser){
     int choice = -1;
     puts("Choose an action: (by entering the corresponding number)");
     printf("Post tweet: \t\t 1\n");
@@ -27,19 +27,19 @@ int menu(twitter *ts, user *sptr){
         fflush(stdin);
         switch (choice) {
             case 1:
-                posttweet(ts,sptr); //calling function that allows user to post tweets
+                posttweet(ts, CurrentUser); //calling function that allows user to post tweets
                 return 1;
             case 2: //getnewsfeed
-                getNewsFeed(ts, sptr);
+                getNewsFeed(ts, CurrentUser);
                 return 2;
             case 3:
-                follow(ts, sptr); //calling function that allows users to follow other users
+                follow(ts, CurrentUser); //calling function that allows users to follow other users
                 return 3;
             case 4:
-                unfollow(ts, sptr); //calling function that allows users to unfollow other users
+                unfollow(ts, CurrentUser); //calling function that allows users to unfollow other users
                 return 4;
             case 5:
-                delete_user(ts, sptr); //calling function that allows users to delete their account
+                delete_user(ts, CurrentUser); //calling function that allows users to delete their account
                 return 6;
             case 6:
                 return 6;
@@ -51,6 +51,6 @@ int menu(twitter *ts, user *sptr){
         }
     }
     // for fun
-    printf("Program will Self-Destruct now! Bye User:%s\n", sptr->username);
+    printf("Program will Self-Destruct now! Bye User:%s\n", CurrentUser->username);
     return 7;
 }

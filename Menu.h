@@ -7,4 +7,4 @@
 
 #endif //ENGPROJECT2_MENU_H
 //function prototype that displays the actions that the user can choose from
-int menu(twitter *ts, user *sptr);
+int menu(twitter *ts, user *CurrentUser);
