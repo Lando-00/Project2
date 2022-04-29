@@ -2,13 +2,11 @@
 // Created by lovan on 06/04/2022.
 //
 
-
 #include "twitter_create.h"
 #include "Functions.h"
 #include "Menu.h"
 #include "tweets.h"
 #include <stdio.h>
-
 
 int menu(twitter *ts, user *CurrentUser){
     int choice = -1;
@@ -27,10 +25,10 @@ int menu(twitter *ts, user *CurrentUser){
         fflush(stdin);
         switch (choice) {
             case 1:
-                posttweet(ts, CurrentUser); //calling function that allows user to post tweets
+                postTweet(ts, CurrentUser); //calling function that allows user to post tweets
                 return 1;
-            case 2: //getnewsfeed
-                getNewsFeed(ts, CurrentUser);
+            case 2:
+                getNewsFeed(ts, CurrentUser);//calling function that allows user to view the 10 most recent tweets
                 return 2;
             case 3:
                 follow(ts, CurrentUser); //calling function that allows users to follow other users
@@ -42,15 +40,12 @@ int menu(twitter *ts, user *CurrentUser){
                 delete_user(ts, CurrentUser); //calling function that allows users to delete their account
                 return 6;
             case 6:
-                return 6;
+                return 6; //gives turn to next user
             case 7:
-                return 7;
-            default:
+                return 7;//ends the program
+            default://edge case
                 printf("Error! Not an option!\n");
                 continue;
         }
     }
-    // for fun
-    printf("Program will Self-Destruct now! Bye User:%s\n", CurrentUser->username);
-    return 7;
 }

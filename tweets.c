@@ -9,9 +9,9 @@
 #include <string.h>
 #include "Menu.h"
 
-void posttweet(twitter *ts, user* ptr) //function definition for function that allows users to post tweets
+void postTweet(twitter *ts, user* ptr) //function that allows users to post tweets
 {
-    static int iddigit = 1;
+    static int idDigit = 1;
     Tweetptr currptr = malloc(sizeof(struct tweet));//creating new node for new tweet
     printf("What's on your mind?\n");
     fgets(currptr->msg, TWEET_LENGTH, stdin);//getting input from user
@@ -21,14 +21,14 @@ void posttweet(twitter *ts, user* ptr) //function definition for function that a
         currptr->msg[strlen(currptr->msg) - 1] = '\0'; //putting a null char instead
     }
     strcpy(currptr->user, ptr->username);
-    currptr->id = iddigit++;
+    currptr->id = idDigit++;
     if (ts->tweetheadptr == NULL) //if the head pointer points to NULL
     {
         // ts->newsfeed, is the head pointer for tweets in the twitter system!
-        ts->tweetheadptr = currptr; //the head pointer is the current pointer
+        ts->tweetheadptr = currptr;
         currptr->nextpointer = NULL; //instead of the head pointer pointing to NULL, the current pointer now points to NULL
     } else {
-        currptr->nextpointer = ts->tweetheadptr;//make the current pointer which points to the next pointer be the head pointer (first node in the list)
+        currptr->nextpointer = ts->tweetheadptr;//adding a new node to the beginning of the list
         ts->tweetheadptr = currptr;
     }
 
@@ -39,7 +39,7 @@ void getNewsFeed(twitter *ts, user *currUser)
     if(currptr == NULL){
         printf("There are no Tweets in your feed!\n");
     }
-    int tweet_check = 0;
+    int tweet_check = 0;//allows for the 10 recent tweets to be displayed
     while(currptr != NULL)//going through the tweets
     {
         if(currUser->num_following > 0) // for edge cases
@@ -48,14 +48,14 @@ void getNewsFeed(twitter *ts, user *currUser)
             {
                 if (strcasecmp(currptr->user, currUser->following[i]) == 0 ||
                     strcasecmp(currptr->user, currUser->username) == 0) {
-                    tweet_check++;
+                    tweet_check++;//counting each tweet
                     printf("%s\n"
                            "By User:%s, Tweet Id: %d\n", currptr->msg,currptr->user, currptr->id);
                     break;
                 }
             }
         }
-        else // incase user follows nooone
+        else // in case user follows no one
         {
             if(strcasecmp(currptr->user, currUser->username) == 0){
                 tweet_check++;

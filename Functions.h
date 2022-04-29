@@ -8,12 +8,13 @@
 
 
 
-void follow(twitter *ts, user *ptr); //function prototype to follow other users
+void follow(twitter *ts, user *ptr); //function to follow other users
 
-void unfollow(twitter *ts, user *ptr); //function prototype to unfollow other users
+void unfollow(twitter *ts, user *ptr); //function to unfollow other users
 
-void delete_user(twitter *ts, user *curruser); //function prototype to delete users
+void delete_user(twitter *ts, user *curruser); //function to delete users
 
 void sub_delete(twitter *ts, user *curruser);
-
+//removes deleted user's presence from other user's list of following/followers
+//deletes any previous tweets made by the user who is to be deleted
 #endif //ENGPROJECT2_FUNCTIONS_H

@@ -6,5 +6,5 @@
 #define ENGPROJECT2_MENU_H
 
 #endif //ENGPROJECT2_MENU_H
-//function prototype that displays the actions that the user can choose from
+//function that displays the actions that the user can choose from
 int menu(twitter *ts, user *CurrentUser);

@@ -8,43 +8,39 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void follow(twitter *ts, user *ptr) //function definition to follow a user
+void follow(twitter *ts, user *ptr) //function to follow a user
 { //takes in the whole twitter struct, and the current user
 
-    char mUser[USR_LENGHT];//the user who is going to get followed by the current user
+    char mUser[USR_LENGHT];
     printf("Enter user you want to Follow:\n");
     fflush(stdin); //used to flush output buffer of the stream
-
-    fgets(mUser, USR_LENGHT, stdin); //reads in the characters from the stream
-
+    fgets(mUser, USR_LENGHT, stdin); //gets user input
     if(mUser[strlen(mUser) -1] == '\n') //replacing the newline char with the null char
     {
         mUser[strlen(mUser) - 1] = '\0'; //when the user presses enter, move on
     }
-
-    // runs check to see if you already follow the entered user
+   //edge case for if user tries to follow themselves
     for(int d = 0; d < MAX_FOLLOWING; d++){
         if(strcasecmp(mUser,ptr->username)==0){
-            printf("You are not allowed to follow yourself!\n Try entering a different user.\nNot very clever are you?\nanyhoo...");
+            printf("You are not allowed to follow yourself!\n Try entering a different user.");
             return;
         }
+        // runs check to see if you already follow the entered user
         if(strcasecmp(mUser,ptr->following[d])==0){
             printf("You already follow this User!\n No point in following them twice!\n\n");
             return;
         }
     }
 
-    Userptr currptr;
+    Userptr currptr; //temp pointer
     currptr = ts->headptr; //starting at the beginning of the list
-    int user_check = 0; //checks to see if the user entered to be followed is in the system
+    int user_check = 0;
     while(currptr != NULL) //while the end of the list is not reached
     {
         if(strcasecmp(currptr->username,mUser) == 0) //compares the current user to the user who is going to be followed
         {
-            // current user follows user b
             strcpy(ptr->following[ptr->num_following], currptr->username ); //copying the name of the user that's being followed and putting it into the string of names that the current user follows
             ptr->num_following++; // increases following count
-            // person b has a follower
             strcpy(currptr->followers[currptr->num_followers], ptr->username); //copying the name of current user and putting it into the string of names of the following list for the user that's being followed
             currptr->num_followers++; // increases follower count
             user_check = 1;
@@ -56,12 +52,12 @@ void follow(twitter *ts, user *ptr) //function definition to follow a user
     }
     if(user_check == 0) //edge case to check whether the user to be followed entered by the current user is in the system
     {
-        puts("Username you have entered is not in the System! You will be returned to the menu Now!");
+        puts("Username you have entered is not in the System! You will be returned to the menu now!");
         return;
     }
 }
 
-void delete_user(twitter *ts, user *curruser) //function definition to delete a user
+void delete_user(twitter *ts, user *curruser) //function to delete a user
 {
     Userptr tmp; //creating a temporary pointer which will change what it points to each time unlike the headptr which only points to the first node in the list
     tmp = ts->headptr; //temp starts by pointing to the first node in the list
@@ -85,12 +81,13 @@ void delete_user(twitter *ts, user *curruser) //function definition to delete a 
 void sub_delete(twitter *ts, user *curruser)
 {
     char tmpuser[USR_LENGHT];
-    for(int i = 0; i < curruser->num_followers; i++){ // removes name of current user from lists in other users, before deleting current user
-        strcpy(tmpuser,curruser->followers[i]);
-        Userptr tmpptr = ts->headptr; //starting at the beginning of the list
+    //trying to find users that follow the current user to be deleted and subtracting their num_following by 1
+    for(int i = 0; i < curruser->num_followers; i++){
+        strcpy(tmpuser,curruser->followers[i]); //copy current user's follower list into tmpuser
+        Userptr tmpptr = ts->headptr; //starting at the beginning of the list of users
         while(strcasecmp(tmpptr->username,tmpuser)!=0)
         {
-            tmpptr = tmpptr->nextptr;
+            tmpptr = tmpptr->nextptr;//move onto the next node
         }
         int k = 0;
         while(strcasecmp(tmpptr->following[k],curruser->username)!=0){
@@ -102,9 +99,10 @@ void sub_delete(twitter *ts, user *curruser)
         }
         tmpptr->num_following--;
     }
-    for(int i = 0; i < curruser->num_following; i++){ // same thing, but does it for followers list of other users.
+    //removing the current user from the follower list of other users.
+    for(int i = 0; i < curruser->num_following; i++){ // same thing as above , but does it for followers list of other users.
         strcpy(tmpuser,curruser->following[i]);
-        Userptr tmpptr = ts->headptr;
+        Userptr tmpptr = ts->headptr;//starting at the beginning
         while(strcasecmp(tmpptr->username,tmpuser)!=0){
             tmpptr = tmpptr->nextptr;
         }
@@ -118,14 +116,14 @@ void sub_delete(twitter *ts, user *curruser)
         }
         tmpptr->num_followers--;
     }
-    //finally need to delete any tweets by the user b4 delting the account
+    //need to delete any tweets made by the user before deleting their account
     Tweetptr currtweet = ts->tweetheadptr;
     Tweetptr prevtweet = ts->tweetheadptr->nextpointer;
-    while(currtweet != NULL){
-        if(strcasecmp(curruser->username,currtweet->user) == 0){
+    while(currtweet != NULL){ //while the end of the list is not reached
+        if(strcasecmp(curruser->username,currtweet->user) == 0){ //if current tweeter is the same as the current user
             if(currtweet == ts->tweetheadptr){
                 ts->tweetheadptr = currtweet->nextpointer;
-                free(currtweet);
+                free(currtweet); //deleting tweet made by the user who is to be deleted
                 currtweet = ts->tweetheadptr->nextpointer;
                 continue;
             }
@@ -139,7 +137,7 @@ void sub_delete(twitter *ts, user *curruser)
     }
 }
 
-void unfollow(twitter *ts, user *ptr)//function definition to unfollow a user
+void unfollow(twitter *ts, user *ptr)//function to unfollow a user
 {
     char name[USR_LENGHT];
     char null[USR_LENGHT];
