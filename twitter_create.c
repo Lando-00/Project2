@@ -68,6 +68,9 @@ void create_twitter_system(twitter * ts){
             if(currptr->nextptr == NULL)
             {
                 currptr = ts->headptr;
+                if(ts->headptr == NULL){
+                    return;
+                }
             }
             else {
                 currptr = currptr->nextptr; //go to the next user
