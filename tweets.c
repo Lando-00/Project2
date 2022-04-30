@@ -50,7 +50,8 @@ void getNewsFeed(twitter *ts, user *currUser)
                     strcasecmp(currptr->user, currUser->username) == 0) {
                     tweet_check++;//counting each tweet
                     printf("%s\n"
-                           "By User:%s, Tweet Id: %d\n", currptr->msg,currptr->user, currptr->id);
+                           "By User:%s, Tweet Id: %d\n"
+                           "-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n", currptr->msg,currptr->user, currptr->id);
                     break;
                 }
             }
@@ -60,13 +61,14 @@ void getNewsFeed(twitter *ts, user *currUser)
             if(strcasecmp(currptr->user, currUser->username) == 0){
                 tweet_check++;
                 printf("%s\n"
-                       "By User:%s, Tweet Id: %d\n", currptr->msg,currptr->user, currptr->id);
+                       "By User:%s, Tweet Id: %d\n"
+                       "-- -- -- -- -- -- -- -- -- -- -- -- -- -- --\n", currptr->msg,currptr->user, currptr->id);
             }
         }
         if(tweet_check==10)
         {
             break;
         }
-        currptr = currptr->nextpointer;
+        currptr = currptr->nextpointer; // moves to Next tweet
     }
 }

@@ -8,24 +8,23 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void follow(twitter *ts, user *ptr) //function to follow a user
-{ //takes in the whole twitter struct, and the current user
-
+void follow(twitter *ts, user *ptr) //takes in the whole twitter struct, and the current user
+{
     char mUser[USR_LENGHT];
     printf("Enter user you want to Follow:\n");
     fflush(stdin); //used to flush output buffer of the stream
     fgets(mUser, USR_LENGHT, stdin); //gets user input
     if(mUser[strlen(mUser) -1] == '\n') //replacing the newline char with the null char
     {
-        mUser[strlen(mUser) - 1] = '\0'; //when the user presses enter, move on
+        mUser[strlen(mUser) - 1] = '\0';
     }
-   //edge case for if user tries to follow themselves
-    for(int d = 0; d < MAX_FOLLOWING; d++){
-        if(strcasecmp(mUser,ptr->username)==0){
-            printf("You are not allowed to follow yourself!\n Try entering a different user.");
-            return;
-        }
-        // runs check to see if you already follow the entered user
+    //edge case for if user tries to follow themselves
+    if(strcasecmp(mUser,ptr->username)==0){
+        printf("You can't follow yourself. Not very clever are you?\n anyhoo...\n\n");
+        return;
+    }
+    // runs check to see if you already follow the entered user
+    for(int d = 0; d < ptr->num_following; d++){
         if(strcasecmp(mUser,ptr->following[d])==0){
             printf("You already follow this User!\n No point in following them twice!\n\n");
             return;
@@ -66,6 +65,7 @@ void delete_user(twitter *ts, user *curruser) //function to delete a user
     {
         ts->headptr = curruser->nextptr;
         free(curruser);//removes the space previously taken up by that user struct
+        sub_delete(ts, curruser); //calling the sub_delete function
         return;
     }
 
@@ -117,6 +117,9 @@ void sub_delete(twitter *ts, user *curruser)
         tmpptr->num_followers--;
     }
     //need to delete any tweets made by the user before deleting their account
+    if(ts->tweetheadptr == NULL){
+        return;
+    }
     Tweetptr currtweet = ts->tweetheadptr;
     Tweetptr prevtweet = ts->tweetheadptr->nextpointer;
     while(currtweet != NULL){ //while the end of the list is not reached
@@ -183,4 +186,19 @@ void unfollow(twitter *ts, user *ptr)//function to unfollow a user
             break;
         }
     }
+}
+
+void printUsers(twitter *ts){
+    Userptr currptr = ts->headptr; //calling the head pointer inside the twitter system
+    if(ts->headptr == NULL)
+    {
+        puts("No User Left on system.");
+        exit(EXIT_SUCCESS);
+    }
+    // prints out all the users // linked list style
+    while(currptr != NULL){
+        printf("User:@%20s\tFollowing:%d\t    Followers:%d\n", currptr->username, currptr->num_following, currptr->num_followers);
+        currptr = currptr->nextptr; //move onto the next user in the list
+    }
+    printf("\n\n");
 }

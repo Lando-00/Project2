@@ -5,7 +5,7 @@
 
 int main() {
     twitter ts;
-    create_twitter_system(&ts); //calling the function
+    create_twitter_system(&ts); //initialises the twitter System
 
     Userptr currptr = ts.headptr; //calling the head pointer inside the twitter system
     printf("Last Active Users on the System:\n");
@@ -17,7 +17,7 @@ int main() {
     }
     // prints out all the users // linked list style
     while(currptr != NULL){
-        printf("User:@%s\t\t  Following:%d\t    Followers:%d\n", currptr->username, currptr->num_following, currptr->num_followers);
+        printf("User:@%20s\tFollowing:%d\t    Followers:%d\n", currptr->username, currptr->num_following, currptr->num_followers);
         currptr = currptr->nextptr; //move onto the next user in the list
     }
     return 0;

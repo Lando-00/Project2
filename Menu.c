@@ -7,6 +7,7 @@
 #include "Menu.h"
 #include "tweets.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int menu(twitter *ts, user *CurrentUser){
     int choice = -1;
@@ -47,5 +48,10 @@ int menu(twitter *ts, user *CurrentUser){
                 printf("Error! Not an option!\n");
                 continue;
         }
+    }
+    if(choice == 0){
+      printf("You have initiated termination procedure!\n");
+      printf("The program will Self-Destruct Now!\nGoodBye!");
+      exit(EXIT_FAILURE);
     }
 }
