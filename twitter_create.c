@@ -76,7 +76,5 @@ void create_twitter_system(twitter * ts){
         else if(control == 7){
             break; //exit out of the program
         }
-
     }
-
 }
