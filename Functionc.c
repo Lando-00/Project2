@@ -157,7 +157,7 @@ void unfollow(twitter *ts, user *ptr)//function to unfollow a user
         name[strlen(name) - 1] = '\0'; //putting a null char instead
     }
     int i, check = 0;
-    for(i = 0; ptr->num_following; i++){
+    for(i = 0; i < ptr->num_following; i++){
         if(strcmp(ptr->following[i], name) == 0) //compare the following list of names to the name entered above
         {
             strcpy(ptr->following[i], null);
