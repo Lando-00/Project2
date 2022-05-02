@@ -44,7 +44,7 @@ void getNewsFeed(twitter *ts, user *currUser)
     {
         if(currUser->num_following > 0) // for edge cases
         {
-            for (int i = 0; i < currUser->num_following; i++) //going through the following list & comparing to tweeter
+            for (int i = 0; i <= currUser->num_following; i++) //going through the following list & comparing to tweeter
             {
                 if (strcasecmp(currptr->user, currUser->following[i]) == 0 ||
                     strcasecmp(currptr->user, currUser->username) == 0) {
