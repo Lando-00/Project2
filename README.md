@@ -1,2 +1,2 @@
 # Project2
-Compsci, semester 2, project 2, software eng.
+Compsci Project 2. Twitter System.
